@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Sintenoj de la butonoj -->
+        <script>
+            $(document).ready(function () {
+                $.getScript('akiri_la_veteron.js');
+                // $.getScript('ŝanĝi_la_formaton.js');
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row text-center">
+                <h2>Via vetero</h2>
+            </div>
+            <div class="row text-center well">
+                <div class="col-xs-12" id="loko">
+                    Loko ĉi tie
+                </div>
+                <div class="col-xs-12" id="varmeco">
+                    Varmeco ĉi tie
+                </div>
+                <div class="col-xs-12" id="ĉielo">
+                    Bildo pri la ĉielo ĉi tie
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <button id="formato" class="btn btn-primary">
+                        °C <-> °F
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
