@@ -1,30 +1,54 @@
-// Trovi la pozicion per la retumilo
-var output = document.getElementById("loko");
+var OWM_api_key = '4a0c15896857b7863427caabef6ec7e0';
+var lokoOutput = document.getElementById("loko");
+var varmecoOutput = document.getElementById("varmeco");
+var ventoOutput = document.getElementById("vento");
 
+
+// Detekti ĉu trovi la tutmondlokon eblas
 if (!navigator.geolocation) {
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    lokoOutput.innerHTML = "<p>Tutmondalokigo ne eblas en via retumilo</p>";
 }
+
+
+// Provi trovi la tutmondlokon, kaj se jes akiri la veteron
+lokoOutput.innerHTML = "<p>Serĉanta la tutmondlokon...</p>";
+navigator.geolocation.getCurrentPosition(success, error);
 
 function success(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    lokoOutput.innerHTML = '<p>Latitudo: ' + latitude + '° <br>Longitudo: ' + longitude + '°</p>';
+    akiriVeteron(latitude, longitude);
 }
+
 
 function error() {
-    output.innerHTML = "Unable to retrieve your location";
+    lokoOutput.innerHTML = "Ne eblis trovi vian tutmondlokon";
 }
 
-output.innerHTML = "<p>Locating…</p>";
 
-navigator.geolocation.getCurrentPosition(success, error);
+// Akiri la veteron, uzante OpenWeatherMap kaj ĝia malŝlosilon
+function akiriVeteron(latitude, longitude){
+    $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + OWM_api_key, function(result){
+        afiŝiVeteron(result);
+    });
+}
 
 
+// Afiŝi en HTML la diversajn datumojn pri vetero
+function afiŝiVeteron(result){
+    // Afiŝi la urbon
+    document.getElementById("loko").innerHTML += '<p>' + result.name + '</p>';
 
-/*
-// Peti la veteron al OpenWeatherMap
-var api_key = '4a0c15896857b7863427caabef6ec7e0';
-var vetero = loadjson('http://api.openweathermap.org/data/2.5/weather?q=Paris&appid=' + api_key);
-//  $(".varmeco").html(vetero);
-*/
+    // Afiŝi la varmecon
+
+    // Elekti la bildon laŭ la vento
+    // Afiŝi la bildon de la vento
+}
+
+
+// Elekti bildeton laŭ la forto de la vento
+function elektiBildon(){
+
+}
