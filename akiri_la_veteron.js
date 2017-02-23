@@ -1,7 +1,6 @@
 var OWM_api_key = '4a0c15896857b7863427caabef6ec7e0';
 var lokoOutput = document.getElementById("loko");
 var varmecoOutput = document.getElementById("varmeco");
-var ventoOutput = document.getElementById("vento");
 
 
 // Detekti ĉu trovi la tutmondlokon eblas
@@ -28,7 +27,7 @@ function error() {
 }
 
 
-// Akiri la veteron, uzante OpenWeatherMap kaj ĝia malŝlosilon
+// Akiri la veteron, uzante OpenWeatherMap kaj ĝian malŝlosilon
 function akiriVeteron(latitude, longitude){
     $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + OWM_api_key, function(result){
         afiŝiVeteron(result);
@@ -38,17 +37,18 @@ function akiriVeteron(latitude, longitude){
 
 // Afiŝi en HTML la diversajn datumojn pri vetero
 function afiŝiVeteron(result){
+    console.log(result);
+
     // Afiŝi la urbon
-    document.getElementById("loko").innerHTML += '<p>' + result.name + '</p>';
+    lokoOutput.innerHTML += '<p>Urbo: ' + result.name + '</p>';
 
     // Afiŝi la varmecon
+    varmecoOutput.innerHTML = '<p>Varmeco: ' + result.main.temp + '</p>';
 
-    // Elekti la bildon laŭ la vento
-    // Afiŝi la bildon de la vento
-}
-
-
-// Elekti bildeton laŭ la forto de la vento
-function elektiBildon(){
-
+    // Elekti kaj afiŝi la bildon laŭ la vento
+    if (result.clouds.all < 50){
+        $("#ĉielo").addClass("fa-sun-o");
+    } else {
+        $("#ĉielo").addClass("fa-cloud");
+    }
 }
