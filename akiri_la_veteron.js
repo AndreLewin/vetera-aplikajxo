@@ -43,7 +43,7 @@ function afiŝiVeteron(result){
     lokoOutput.innerHTML += '<p>Urbo: ' + result.name + '</p>';
 
     // Afiŝi la varmecon
-    varmecoOutput.innerHTML = '<p>Varmeco: ' + result.main.temp + '</p>';
+    varmecoOutput.innerHTML = '<p>Varmeco: ' + result.main.temp + '°F</p>';
 
     // Elekti kaj afiŝi la bildon laŭ la vento
     if (result.clouds.all < 50){
